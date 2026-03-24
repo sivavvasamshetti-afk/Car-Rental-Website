@@ -1,0 +1,44 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /car-rental
+            pathType: Prefix
+            backend:
+              service:
+                name: myservice13
+                port:
+                  number: 80
+
+          - path: /folwer-shop
+            pathType: Prefix
+            backend:
+              service:
+                name: myservice14
+                port:
+                  number: 80
+
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myservice12
+                port:
+                  number: 80
+
+          - path: /tom
+            pathType: Prefix
+            backend:
+              service:
+                name: myserve
+                port:
+                  number: 80
