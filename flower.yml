@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flower-shop
+  labels:
+    app: vsp13
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vsp13
+  template:
+    metadata:
+      labels:
+        app: vsp13
+    spec:
+      containers:
+        - name: mycont14
+          image: sivav2516/car-rental:latest
+          ports:
+            - containerPort: 8855
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice14
+spec:
+  selector:
+    app: vsp13
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8855
+  type: ClusterIP
