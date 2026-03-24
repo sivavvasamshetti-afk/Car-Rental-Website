@@ -59,7 +59,7 @@ pipeline {
                     kubectl apply -f flower.yml
                     kubectl apply -f car-rental.yml
                     kubectl apply -f suryatravel.yml
-                    kubectl apply -f helloworld.yml.yml
+                    kubectl apply -f helloworld.yml
                 '''
             }
         }
