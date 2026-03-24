@@ -44,7 +44,7 @@ pipeline {
                 sh '''
                 docker stop car-rental || true
                 docker rm car-rental || true
-                docker run -d -p 8080:80 --name car-rental $IMAGE_NAME:$TAG
+                docker run -d -p 8085:80 --name car-rental $IMAGE_NAME:$TAG
                 '''
             }
         }
