@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-rental
+  labels:
+    app: vsp12
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vsp12
+  template:
+    metadata:
+      labels:
+        app: vsp12
+    spec:
+      containers:
+        - name: mycont13
+          image: sivav2516/car-rental:latest
+          ports:
+            - containerPort: 8085
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice13
+spec:
+  selector:
+    app: vsp12
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8085
+  type: ClusterIP
