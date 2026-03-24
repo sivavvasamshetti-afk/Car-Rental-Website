@@ -48,5 +48,36 @@ pipeline {
                 '''
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh '''
+                    export KUBECONFIG=/var/lib/jenkins/.kube/config
+
+                    kubectl get nodes
+
+                    
+                    kubectl apply -f flower.yml
+                    kubectl apply -f car-rental.yml
+                    kubectl apply -f suryatravel.yml
+                    kubectl apply -f helloworld.yml.yml
+                '''
+            }
+        }
+
+        stage('Deploy Ingress') {
+            steps {
+                sh '''
+                    export KUBECONFIG=/var/lib/jenkins/.kube/config
+
+                    kubectl apply -f ingress.yml
+
+                    echo "======================================"
+                    echo "Ingress deployed successfully 🌐"
+                    echo "======================================"
+
+                    kubectl get ingress
+                '''
+            }
+        }
     }
 }
